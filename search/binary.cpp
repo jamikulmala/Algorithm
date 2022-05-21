@@ -12,7 +12,11 @@ int main()
     std::cout << "Enter number to be searched for: ";
     int search_for;
     std::cin >> search_for;
-        if(search_for % 10 == 0 || search_for > 200){
+    if(search_for == 11){
+        exit(0);
+    }
+    else{
+        if(binary_search(search_for) != -1){
             std::cout << "FOUND! " << binary_search(search_for) << std::endl;
         }
         else{
@@ -20,6 +24,7 @@ int main()
         }
 
     }
+}
 }
 
 int binary_search(int searched){
@@ -36,6 +41,9 @@ int binary_search(int searched){
         else if(NUMBERS.at(middle) > searched){
             last = middle-1;
         }
+        else{
+            return -1;
+        }
     }
-    return 0;
+    return -1;
 }
