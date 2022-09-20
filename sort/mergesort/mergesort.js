@@ -5,8 +5,6 @@ let reset = document.getElementById("return");
 sort.addEventListener("click", function sortArr(){
     let text = document.getElementById("array").value;
     let numbers = text.split(' ').map(Number);
-    console.log(numbers);
-
     let sorted_numbers = mergesort(numbers);
     document.getElementById("result").innerText = sorted_numbers;
     });
