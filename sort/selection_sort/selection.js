@@ -5,7 +5,7 @@ let reset = document.getElementById("return");
 sort.addEventListener("click", function sortArr(){
     let text = document.getElementById("array").value;
     let numbers = text.split(' ').map(Number);
-    let sorted_numbers = quickSort(numbers, 0, numbers.length-1);
+    let sorted_numbers = selection(numbers);
     document.getElementById("result").innerText = sorted_numbers;
     });
 
@@ -22,28 +22,16 @@ function swap(items, left, right){
     items[right] = temp;
 }
 
-function partition(arr, left, right) {
-    var pivot = right;
-    var ptr = left-1;
-    for(i=left;i <= right;++i){
-        if(arr[i] <= pivot){
-            ptr += 1;
-            swap(arr, ptr, i);
+function selection(arr){
+    for(var i = 0; i < arr.length-1; ++i){
+        let min = i;
+        for(var j = i+1;j < arr.length; ++j){
+            if(arr[j] < arr[min]){
+                min = j;
+            }
         }
-    }
-    swap(arr, ptr+1, right);
-    return ptr+1;
-}
-
-function quickSort(arr, left, right) {
-    var pivot;
-    if(arr.length == 1){
-        return arr;
-    }
-    if(left < right){
-        pivot = partition(arr, left, right);
-        quickSort(arr, left, pivot-1);
-        quickSort(arr, pivot+1, right);
+        swap(arr, i, min);
     }
     return arr;
 }
+
